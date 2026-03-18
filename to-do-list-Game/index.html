@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A beautiful, accessible task management application">
+    <title>Todo List - Task Manager</title>
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+</head>
+
+<body>
+
+    <main class="container" role="main">
+        <!-- Header -->
+        <header>
+            <div class="header-top">
+                <h1><i class='bx bx-task' aria-hidden="true"></i> Todo List</h1>
+                <span class="subtitle">Stay organized, get things done!</span>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <form class="input-wrapper" id="todo-form" role="search">
+                    <input type="text" id="todo-input" placeholder="What needs to be done?" class="input"
+                        aria-label="Add a new task" autocomplete="off">
+                    <select id="priority-select" class="priority-select" aria-label="Select task priority">
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                        <option value="low">Low</option>
+                    </select>
+                    <button type="submit" class="btn-add" aria-label="Add task">
+                        <i class='bx bx-plus' aria-hidden="true"></i>
+                        <span>Add</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-wrapper">
+                    <i class='bx bx-search' aria-hidden="true"></i>
+                    <input type="text" id="search-input" placeholder="Search tasks..." class="search-input"
+                        aria-label="Search tasks">
+                </div>
+            </div>
+        </header>
+
+        <!-- Action Buttons -->
+        <div class="todos-filter">
+            <button id="delete-selected" class="btn-ghost" aria-label="Delete completed tasks">
+                <i class='bx bx-checkbox-checked' aria-hidden="true"></i>
+                <span>Delete Completed</span>
+            </button>
+            <button id="delete-all" class="btn-ghost" aria-label="Delete all tasks">
+                <i class='bx bx-trash' aria-hidden="true"></i>
+                <span>Delete All</span>
+            </button>
+        </div>
+
+        <!-- Todo List -->
+        <ul id="all-todos" class="todos-list" role="list" aria-label="Task list">
+            <li class="empty-state" role="status">
+                <i class='bx bx-clipboard' aria-hidden="true"></i>
+                <p>No tasks yet. Add a task to get started!</p>
+            </li>
+        </ul>
+
+        <!-- Filters and Stats -->
+        <footer class="filters">
+            <div class="filter-group">
+                <div class="dropdown">
+                    <button class="dropbtn" aria-haspopup="true" aria-expanded="false" aria-label="Filter tasks">
+                        <i class='bx bx-filter' aria-hidden="true"></i>
+                        <span>Filter</span>
+                        <i class='bx bx-chevron-down' aria-hidden="true"></i>
+                    </button>
+                    <div class="dropdown-content" role="menu">
+                        <a href="#" id="all" role="menuitem">
+                            <i class='bx bx-list-ul' aria-hidden="true"></i> All
+                        </a>
+                        <a href="#" id="rem" role="menuitem">
+                            <i class='bx bx-time' aria-hidden="true"></i> Pending
+                        </a>
+                        <a href="#" id="com" role="menuitem">
+                            <i class='bx bx-check-circle' aria-hidden="true"></i> Completed
+                        </a>
+                        <hr class="dropdown-divider" role="separator">
+                        <a href="#" id="prio-high" role="menuitem">
+                            <i class='bx bx-up-arrow-circle' aria-hidden="true"></i> High Priority
+                        </a>
+                        <a href="#" id="prio-med" role="menuitem">
+                            <i class='bx bx-minus-circle' aria-hidden="true"></i> Medium Priority
+                        </a>
+                        <a href="#" id="prio-low" role="menuitem">
+                            <i class='bx bx-down-arrow-circle' aria-hidden="true"></i> Low Priority
+                        </a>
+                    </div>
+                </div>
+                <button id="clear-filter" class="btn-clear" aria-label="Clear filter">
+                    <i class='bx bx-x' aria-hidden="true"></i>
+                    <span>Clear</span>
+                </button>
+            </div>
+
+            <div class="stats" aria-label="Task statistics">
+                <div class="stat-item">
+                    <i class='bx bx-check-circle' aria-hidden="true" style="color: var(--success-color);"></i>
+                    <span>Completed: <strong id="c-count">0</strong></span>
+                </div>
+                <div class="stat-item">
+                    <i class='bx bx-list-plus' aria-hidden="true" style="color: var(--primary-color);"></i>
+                    <span>Total: <strong id="r-count">0</strong></span>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Toast Container -->
+    <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>
